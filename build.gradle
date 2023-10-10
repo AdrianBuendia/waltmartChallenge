@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven {url 'https://www.jitpack.io'}
+    }
+    dependencies {
+        classpath Android.TOOLS_GRADLE_CLASSPATH
+        classpath Android.TOOLS_BUNDLE_CLASSPATH
+        classpath AndroidX.NAVIGATION_SAFE_ARGS_GRADLE_PLUGIN_CLASSPATH
+        classpath Google.HILT_GRADLE_PLUGIN_CLASSPATH
+        classpath JetbrainsConfig.KOTLIN_GRADLE_PLUGIN_CLASSPATH
+    }
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

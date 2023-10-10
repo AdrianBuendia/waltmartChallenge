@@ -1,0 +1,140 @@
+import external.Retrofit
+import url.BaseUrl
+
+plugins {
+    id 'dagger.hilt.android.plugin'
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs"
+}
+
+android {
+    namespace Release.APPLICATION_ID
+    compileSdk Release.COMPILE_SDK_VERSION
+
+    defaultConfig {
+        applicationId Release.APPLICATION_ID
+        minSdk Release.MIN_SDK_VERSION
+        targetSdk Release.TARJET_SDK_VERSION
+        versionCode Release.VERSION_CODE
+        versionName Release.VERSION_NAME
+        testInstrumentationRunner AndroidX.ANDROID_JUNIT_RUNNER
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "mode"
+    productFlavors {
+        MEX {
+            buildConfigField BaseUrl.STRING, BaseUrl.SERVER_URL_LABEL, BaseUrl.SERVER_URL_MEX_VALUE
+        }
+        ARG {
+            buildConfigField BaseUrl.STRING, BaseUrl.SERVER_URL_LABEL, BaseUrl.SERVER_URL_ARG_VALUE
+        }
+        BRA {
+            buildConfigField BaseUrl.STRING, BaseUrl.SERVER_URL_LABEL, BaseUrl.SERVER_URL_BRA_VALUE
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled false
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    //JetBrains
+    implementation JetbrainsConfig.KOTLIN_STDLIB_JDK8
+    implementation JetbrainsConfig.KOTLINX_COROUTINES_CORE
+    implementation JetbrainsConfig.KOTLINX_COROUTINES_ANDROID
+
+    //Androidx
+    implementation AndroidX.APP_COMPAT
+    implementation AndroidX.CORE
+    implementation AndroidX.CONSTRAINT_LAYOUT
+
+    // ViewModel
+    implementation AndroidX.VIEW_MODEL
+
+    // LiveData
+    implementation AndroidX.LIVE_DATA
+
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation AndroidX.RUNTIME
+
+    // Saved state module for ViewModel
+    implementation AndroidX.SAVEDSTATE
+
+    //Fragment
+    implementation AndroidX.FRAGMENT_KTS
+
+    //Legacy SerializedName(
+    implementation AndroidX.LEGACY_SUPPORT
+
+    // Kotlin
+    implementation AndroidX.NAVIGATION_FRAGMENT
+    implementation AndroidX.NAVIGATION_UI_KTX
+
+
+    // Annotation processor
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt AndroidX.LIFECYCLE_COMPILER
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation AndroidX.LIFECYCLE_COMMON
+    implementation AndroidX.LIFECYCLE_EXTENSIONS
+
+    //JUNIT
+    androidTestImplementation AndroidXTesting.JUNIT
+    testImplementation Junit.JUNIT
+
+    //Room
+    implementation AndroidX.ROOM_RUNTIME
+    annotationProcessor AndroidX.ROOM_COMPILER
+    kapt AndroidX.ROOM_COMPILER
+    //ksp AndroidX.ROOM_COMPILER
+
+    //Retrofit
+    implementation Retrofit.RETROFIT_RETROFIT
+    implementation Retrofit.RETROFIT_CONVERTER
+    implementation Retrofit.URL_CONNECTION
+    implementation Retrofit.INTERCEPTOR
+
+    //Hilt
+    implementation Google.HILT_HILT
+    kapt Google.HILT_COMPILER
+
+    //Material
+    api Google.MATERIAL
+
+    //Glide
+    implementation GitHub.GLIDE
+    kapt GitHub.GLIDE_COMPILER
+
+    //Support
+    implementation Android.SUPPORT
+
+}

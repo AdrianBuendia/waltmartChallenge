@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Common dimen -->
+  <dimen name="common_dimen_0dp">0dp</dimen>
+  <dimen name="common_dimen_1dp">1dp</dimen>
+  <dimen name="common_dimen_2dp">2dp</dimen>
+  <dimen name="common_dimen_3dp">3dp</dimen>
+  <dimen name="common_dimen_4dp">4dp</dimen>
+  <dimen name="common_dimen_5dp">5dp</dimen>
+  <dimen name="common_dimen_8dp">8dp</dimen>
+  <dimen name="common_dimen_10dp">10dp</dimen>
+  <dimen name="common_dimen_12dp">12dp</dimen>
+  <dimen name="common_dimen_14dp">14dp</dimen>
+  <dimen name="common_dimen_15dp">15dp</dimen>
+  <dimen name="common_dimen_16dp">16dp</dimen>
+  <dimen name="common_dimen_17dp">17dp</dimen>
+  <dimen name="common_dimen_18dp">18dp</dimen>
+  <dimen name="common_dimen_19dp">19dp</dimen>
+  <dimen name="common_dimen_20dp">20dp</dimen>
+  <dimen name="common_dimen_21dp">21dp</dimen>
+  <dimen name="common_dimen_22dp">22dp</dimen>
+  <dimen name="common_dimen_24dp">24dp</dimen>
+  <dimen name="common_dimen_25dp">25dp</dimen>
+  <dimen name="common_dimen_28dp">28dp</dimen>
+  <dimen name="common_dimen_30dp">30dp</dimen>
+  <dimen name="common_dimen_32dp">32dp</dimen>
+  <dimen name="common_dimen_34dp">34dp</dimen>
+  <dimen name="common_dimen_36dp">36dp</dimen>
+  <dimen name="common_dimen_37dp">37dp</dimen>
+  <dimen name="common_dimen_38dp">38dp</dimen>
+  <dimen name="common_dimen_40dp">40dp</dimen>
+  <dimen name="common_dimen_43dp">43dp</dimen>
+  <dimen name="common_dimen_45dp">45dp</dimen>
+  <dimen name="common_dimen_48dp">48dp</dimen>
+  <dimen name="common_dimen_50dp">50dp</dimen>
+  <dimen name="common_dimen_56dp">56dp</dimen>
+  <dimen name="common_dimen_60dp">60dp</dimen>
+  <dimen name="common_dimen_64dp">64dp</dimen>
+  <dimen name="common_dimen_70dp">70dp</dimen>
+  <dimen name="common_dimen_80dp">80dp</dimen>
+  <dimen name="common_dimen_101dp">101dp</dimen>
+  <dimen name="common_dimen_148dp">148dp</dimen>
+  <dimen name="common_dimen_180dp">180dp</dimen>
+  <dimen name="common_dimen_211dp">211dp</dimen>
+  <dimen name="common_dimen_225dp">225dp</dimen>
+</resources>

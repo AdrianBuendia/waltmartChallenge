@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!-- Base application theme. -->
+  <style name="Theme.WaltmartChallenge" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/blue_waltmart</item>
+    <item name="colorPrimaryVariant">@color/yellow_waltmart</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/yellow_waltmart</item>
+    <item name="colorSecondaryVariant">@color/yellow_waltmart</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor">@color/blue_waltmart</item>
+    <!-- Customize your theme here. -->
+  </style>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+  <string name="app_name">Waltmart Challenge</string>
+  <string name="image_description_content">Image Description generic</string>
+
+  <string name="home_item_label_dummy">Under Armor Charged Aurora\n<b>$978</b></string>
+  <string name="home_item_label_value">%s\n <b>%s</b></string>
+
+  <string name="find_label">Buscar ...</string>
+  <string name="save_label">Guardar lista</string>
+
+  <string name="title_error_generic">¡Ocurrió un error!</string>
+  <string name="subtitle_error_generic">Hubo un problema, porfavor intentalo más tarde</string>
+  <string name="rety_generic">Reintentar</string>
+
+</resources>
