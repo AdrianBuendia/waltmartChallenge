@@ -16,7 +16,7 @@ import javax.inject.Inject
 typealias MeliResponse<T> = Flow<Response<T>>
 
 @ExperimentalCoroutinesApi
-open class MeliChallengeRepo @Inject constructor(
+open class WaltmartChallengeRepo @Inject constructor(
     protected val api: Api,
     protected val itemDao: ItemDao
 ) {

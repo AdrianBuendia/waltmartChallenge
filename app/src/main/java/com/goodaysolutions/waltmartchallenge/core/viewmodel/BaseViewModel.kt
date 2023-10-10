@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.goodaysolutions.waltmartchallenge.constants.CommonErrors
-import com.goodaysolutions.waltmartchallenge.core.data.repository.MeliChallengeRepo
+import com.goodaysolutions.waltmartchallenge.core.data.repository.WaltmartChallengeRepo
 import com.goodaysolutions.waltmartchallenge.core.data.repository.SessionExpiredException
 import com.goodaysolutions.waltmartchallenge.core.util.requestHandler.HandlerViewModelStateListener
 import com.goodaysolutions.waltmartchallenge.core.viewmodel.state.BaseViewState
@@ -20,7 +20,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-open class BaseViewModel<REPOSITORY : MeliChallengeRepo> @Inject constructor(protected val repository: REPOSITORY) :
+open class BaseViewModel<REPOSITORY : WaltmartChallengeRepo> @Inject constructor(protected val repository: REPOSITORY) :
     ViewModel(), Observable, HandlerViewModelStateListener {
 
     val dataLoading = MutableLiveData(false)

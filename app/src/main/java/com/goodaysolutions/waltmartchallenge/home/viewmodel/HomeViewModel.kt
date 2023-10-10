@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.goodaysolutions.waltmartchallenge.core.data.api.models.responses.Result
 import com.goodaysolutions.waltmartchallenge.core.data.api.models.responses.SearchItemsResponse
-import com.goodaysolutions.waltmartchallenge.core.data.repository.MeliChallengeRepo
+import com.goodaysolutions.waltmartchallenge.core.data.repository.WaltmartChallengeRepo
 import com.goodaysolutions.waltmartchallenge.core.viewmodel.BaseViewModel
 import com.goodaysolutions.waltmartchallenge.home.view.definition.HomeViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,8 +17,8 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    repository: MeliChallengeRepo
-) : BaseViewModel<MeliChallengeRepo>(repository) {
+    repository: WaltmartChallengeRepo
+) : BaseViewModel<WaltmartChallengeRepo>(repository) {
 
     companion object {
         const val EMPTY = ""

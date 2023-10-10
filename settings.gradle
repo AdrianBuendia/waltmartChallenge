@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MeliChallenge"
+rootProject.name = "WaltmartChallenge"
 include ':app'
