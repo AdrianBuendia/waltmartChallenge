@@ -8,6 +8,21 @@
     android:layout_height="match_parent"
     tools:context=".home.view.HomeFragment">
 
+    <TextView
+      android:id="@+id/tv_save"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/common_dimen_20dp"
+      android:drawablePadding="@dimen/common_dimen_5dp"
+      android:onClick="@{()->viewInteraction.saveItems()}"
+      android:src="@drawable/ic_save_24"
+      android:text="@string/save_label"
+      android:visibility="@{viewModel.saveButtonVisible ? View.VISIBLE :View.GONE}"
+      app:drawableEndCompat="@drawable/ic_save_24"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+
     <androidx.appcompat.widget.LinearLayoutCompat
       android:id="@+id/ll"
       android:layout_width="match_parent"
@@ -55,15 +70,18 @@
       android:id="@+id/rv"
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:layout_marginTop="@dimen/common_dimen_20dp"
       android:orientation="vertical"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/ll"
+      app:layout_constraintTop_toBottomOf="@+id/tv_save"
       tools:listitem="@layout/layout_common_item" />
   </androidx.constraintlayout.widget.ConstraintLayout>
   <data>
+
+    <import type="android.view.View" />
     <variable
       name="viewInteraction"
       type="com.goodaysolutions.waltmartchallenge.home.view.definition.HomeView" />

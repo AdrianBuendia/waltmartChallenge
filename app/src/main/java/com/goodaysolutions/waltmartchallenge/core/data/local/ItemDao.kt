@@ -11,9 +11,9 @@ interface ItemDao {
     fun getAll(): List<Item>
 
     @Insert
-    fun insertAll(vararg items: Item)
+    fun insertAll(items: List<Item>)
 
-    @Delete
-    fun deleteAll(vararg items: Item)
+    @Query("DELETE FROM items")
+    fun deleteAll()
 
 }

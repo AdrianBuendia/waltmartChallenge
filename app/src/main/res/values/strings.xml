@@ -7,6 +7,8 @@
 
   <string name="find_label">Buscar ...</string>
   <string name="save_label">Guardar lista</string>
+  <string name="saved_success_label">Lista guardada con éxito</string>
+  <string name="saved_error_label">Error al guardar lista</string>
 
   <string name="title_error_generic">¡Ocurrió un error!</string>
   <string name="subtitle_error_generic">Hubo un problema, porfavor intentalo más tarde</string>

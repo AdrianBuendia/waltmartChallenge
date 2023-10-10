@@ -9,4 +9,10 @@ sealed class HomeViewState : BaseViewState() {
 
     object OnErrorSearchItems :
         HomeViewState()
+
+    object OnSuccessSavedItems :
+        HomeViewState()
+
+    object OnErrorSavedItems :
+        HomeViewState()
 }

@@ -1,9 +1,12 @@
 package com.goodaysolutions.waltmartchallenge.home.viewmodel
 
 import android.util.Log
+import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
+import com.goodaysolutions.waltmartchallenge.BR
 import com.goodaysolutions.waltmartchallenge.core.data.api.models.responses.Result
 import com.goodaysolutions.waltmartchallenge.core.data.api.models.responses.SearchItemsResponse
+import com.goodaysolutions.waltmartchallenge.core.data.local.Item
 import com.goodaysolutions.waltmartchallenge.core.data.repository.WaltmartChallengeRepo
 import com.goodaysolutions.waltmartchallenge.core.viewmodel.BaseViewModel
 import com.goodaysolutions.waltmartchallenge.home.view.definition.HomeViewState
@@ -22,14 +25,22 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         const val EMPTY = ""
-        const val DEAFULT_SEARCH = "Motorola G6"
     }
 
     var query = ""
 
-    private var resultsList = listOf<Result>()
 
-    lateinit var item: Result
+    var saveButtonVisible = false
+    @Bindable get
+
+    private var resultsList = listOf<Item>()
+        set(value) {
+            field = value
+            saveButtonVisible = resultsList.isNotEmpty()
+            notifyPropertyChanged(BR.saveButtonVisible)
+        }
+
+    lateinit var item: Item
 
     fun searchItems(query: String = EMPTY) {
         viewModelScope.launch {
@@ -46,11 +57,60 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun handleSearchItemsSuccess(response: Response<SearchItemsResponse>) {
-        response.body()?.results?.let { resultsList = it }
+        response.body()?.results?.let { resultList ->
+            val auxList = mutableListOf<Item>()
+            resultList.forEach {
+                auxList.add(
+                    Item(
+                        id = it.id,
+                        title = it.title,
+                        price = it.price,
+                        thumbnail = it.thumbnail
+                    )
+                )
+            }
+            resultsList = auxList
+
+        }
         updateState(HomeViewState.OnSuccessSearchItems)
         hideLoading()
     }
 
     fun getItems() = resultsList
+
+    fun getItemsFromDataBase() {
+        viewModelScope.launch {
+            showLoading()
+            repository.getItemList().catch {
+                Log.e("erro", it.message.toString())
+                handleExceptionWithViewState(it) { error ->
+                    HomeViewState.OnErrorSearchItems
+                }
+            }.collect {
+                handleSearchItemsSuccess(it)
+            }
+        }
+    }
+
+    private fun handleSearchItemsSuccess(items: List<Item>) {
+        resultsList = items
+        updateState(HomeViewState.OnSuccessSearchItems)
+        hideLoading()
+    }
+
+    fun insertItemsToDataBase() {
+        viewModelScope.launch {
+            showLoading()
+            repository.insertItemList(resultsList).catch {
+                Log.e("erro", it.message.toString())
+                handleExceptionWithViewState(it) { error ->
+                    HomeViewState.OnErrorSavedItems
+                }
+            }.collect {
+                hideLoading()
+                updateState(HomeViewState.OnSuccessSavedItems)
+            }
+        }
+    }
 
 }

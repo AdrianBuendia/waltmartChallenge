@@ -3,6 +3,7 @@ package com.goodaysolutions.waltmartchallenge.home.view
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import com.goodaysolutions.waltmartchallenge.R
 import com.goodaysolutions.waltmartchallenge.common.extensions.hideKeyboard
 import com.goodaysolutions.waltmartchallenge.common.views.GenericBottomSheet
@@ -14,7 +15,6 @@ import com.goodaysolutions.waltmartchallenge.home.view.definition.HomeHostView
 import com.goodaysolutions.waltmartchallenge.home.view.definition.HomeView
 import com.goodaysolutions.waltmartchallenge.home.view.definition.HomeViewState
 import com.goodaysolutions.waltmartchallenge.home.viewmodel.HomeViewModel
-import com.goodaysolutions.waltmartchallenge.home.viewmodel.HomeViewModel.Companion.DEAFULT_SEARCH
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -55,25 +55,38 @@ class HomeFragment : BaseInnerFragment<
     }
 
     private fun fetchInitialData() {
-        if (mViewModel.getItems().isEmpty()) mViewModel.searchItems(DEAFULT_SEARCH)
+        mTouchManager.blockTouchEventsTemporarily()
+        if(mViewModel.getItems().isEmpty()){
+            mViewModel.getItemsFromDataBase()
+        }
+
     }
 
     override fun renderViewState(state: BaseViewState) {
         when (state) {
             is HomeViewState.OnSuccessSearchItems -> fillAdapter()
             is HomeViewState.OnErrorSearchItems -> showError()
+            is HomeViewState.OnSuccessSavedItems -> showToast(getString(R.string.saved_success_label))
+            is HomeViewState.OnErrorSavedItems -> showToast(getString(R.string.saved_error_label))
         }
     }
 
     override fun searchItem() = with(mViewModel) {
+        mTouchManager.blockTouchEventsTemporarily()
         hideKeyboard()
         searchItems(query)
     }
 
+    override fun saveItems() {
+        mTouchManager.blockTouchEventsTemporarily()
+        if (mViewModel.getItems().isNotEmpty())
+            mViewModel.insertItemsToDataBase()
+    }
+
     private fun initListAdapter() {
         mViewDataBinding.rv.adapter = itemListAdapter
-        itemListAdapter.onItemClickListener = { result ->
-            mViewModel.item = result
+        itemListAdapter.onItemClickListener = { item ->
+            mViewModel.item = item
             goTo(
                 HomeFragmentDirections.actionHomeFragmentToHomeDetailFragment()
             )
@@ -93,6 +106,15 @@ class HomeFragment : BaseInnerFragment<
         }
         hideKeyboard()
         drop.showNow(parentFragmentManager, GenericBottomSheet.TAG)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(
+            requireContext(),
+            message,
+            Toast.LENGTH_LONG,
+        ).show()
+        hideKeyboard()
     }
 
 }

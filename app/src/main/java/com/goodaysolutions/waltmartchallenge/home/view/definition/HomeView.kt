@@ -4,4 +4,5 @@ import com.goodaysolutions.waltmartchallenge.core.view.definition.BaseInnerFragm
 
 interface HomeView : BaseInnerFragmentView {
     fun searchItem()
+    fun saveItems()
 }

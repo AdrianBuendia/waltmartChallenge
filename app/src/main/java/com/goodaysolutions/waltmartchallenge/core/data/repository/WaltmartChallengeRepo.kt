@@ -4,6 +4,7 @@ import com.goodaysolutions.waltmartchallenge.common.exceptions.ApiException
 import com.goodaysolutions.waltmartchallenge.constants.ApiCodes
 import com.goodaysolutions.waltmartchallenge.core.data.api.Api
 import com.goodaysolutions.waltmartchallenge.core.data.api.models.responses.SearchItemsResponse
+import com.goodaysolutions.waltmartchallenge.core.data.local.Item
 import com.goodaysolutions.waltmartchallenge.core.data.local.ItemDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -42,6 +43,21 @@ open class WaltmartChallengeRepo @Inject constructor(
         emit(true)
     }.flowOn(Dispatchers.IO)
 
+
+    fun getItemList(): Flow<List<Item>> = flow {
+        val itemList = itemDao.getAll()
+        emit(itemList)
+    }.flowOn(Dispatchers.IO)
+
+    fun insertItemList(items: List<Item>): Flow<Boolean> = flow {
+        try {
+            itemDao.deleteAll()
+            itemDao.insertAll(items)
+            emit(true)
+        }catch (e:Exception){
+            emit(false)
+        }
+    }.flowOn(Dispatchers.IO)
 
 }
 
