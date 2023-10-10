@@ -9,6 +9,8 @@ and commonly used Android libraries.
 Please note that the actual implementation code for each exercise would require building
 Android app components, and the provided responses are simplified examples for the given
 tasks.
+
+
 Exercise 1: RecyclerView and Data Binding
 Topic: Android App Development
 Task:
